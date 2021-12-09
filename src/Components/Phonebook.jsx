@@ -19,14 +19,11 @@ class Phonebook extends Component {
     };
   }
   filterContacts() {
-    if (this.state.filter === '') {
-      return this.state.contacts;
-    } else {
-      return this.state.contacts.filter(item =>
-        item.name.toLowerCase().includes(this.state.filter.toLowerCase()),
-      );
-    }
+    return this.state.contacts.filter(item =>
+      item.name.toLowerCase().includes(this.state.filter.toLowerCase()),
+    );
   }
+
   addContact() {
     if (
       this.state.contacts.find(
@@ -49,6 +46,13 @@ class Phonebook extends Component {
         number: '',
       });
     }
+  }
+  deleteContact() {
+    this.filterContacts().map(contact =>
+      this.setState({
+        contacts: this.state.contacts.filter(item => item.id !== contact.id),
+      }),
+    );
   }
   render() {
     return (
@@ -99,11 +103,7 @@ class Phonebook extends Component {
               <button
                 type="button"
                 onClick={e => {
-                  this.setState({
-                    contacts: this.state.contacts.filter(
-                      item => item.id !== contact.id,
-                    ),
-                  });
+                  this.deleteContact();
                 }}
               >
                 Delete

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phonebook } from './Components/Phonebook.jsx';
+import { Phonebook } from './components/Phonebook.jsx';
 
 function App() {
   return (
