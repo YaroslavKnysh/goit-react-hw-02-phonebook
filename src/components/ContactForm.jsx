@@ -7,7 +7,8 @@ const ContactsForm = ({ onAddContact, contacts }) => {
   const [name, setName] = React.useState('');
   const [number, setNumber] = React.useState('');
 
-  const addContact = () => {
+  const addContact = e => {
+    e.preventDefault();
     if (contacts.find(item => item.name.toLowerCase() === name.toLowerCase())) {
       return window.alert(`${name} is already in contacts`);
     } else {
@@ -21,7 +22,7 @@ const ContactsForm = ({ onAddContact, contacts }) => {
     }
   };
   return (
-    <div>
+    <form onSubmit={addContact}>
       <label>Name</label>
       <input
         value={name}
@@ -42,10 +43,8 @@ const ContactsForm = ({ onAddContact, contacts }) => {
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
       />
-      <button type="submit" onClick={addContact}>
-        Add contact
-      </button>
-    </div>
+      <button type="submit">Add contact</button>
+    </form>
   );
 };
 
